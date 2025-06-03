@@ -1,0 +1,242 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Dashboard</title>
+  <link rel="stylesheet" href="./Material.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <!-- <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Manager Dashboard</title>
+   <link rel="stylesheet" href="./Material.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Task Manager</h1>
+      <div class="header-actions">
+        <button class="btn btn-filter">
+          <span class="material-icons">tune</span> Filter
+        </button>
+        <button class="btn btn-primary" id="addTaskBtn">
+          <span class="material-icons">add</span> Add Task
+        </button>
+      </div>
+    </div>
+
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="task-board-header">
+          <h2 class="task-board-title">Task Board</h2>
+          <span class="task-count" id="taskCount">6</span>
+        </div>
+        <ul class="task-categories">
+          <li class="active" data-category="all">All Tasks</li>
+          <li data-category="completed">Completed Tasks</li>
+          <li data-category="pending">Pending Tasks</li>
+          <li data-category="progress">In Progress Tasks</li>
+          <li data-category="deployed">Deployed Tasks</li>
+          <li data-category="deferred">Deferred Tasks</li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Filters -->
+        <div class="filters">
+          <div class="filter-group">
+            <label>Sort:</label>
+            <select id="sortFilter">
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+              <option value="due">Due Date</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Status:</label>
+            <select id="statusFilter">
+              <option value="all">All Status</option>
+              <option value="completed">Completed</option>
+              <option value="pending">Pending</option>
+              <option value="progress">In Progress</option>
+              <option value="deployed">Deployed</option>
+              <option value="deferred">Deferred</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Priority:</label>
+            <select id="priorityFilter">
+              <option value="all">All Priority</option>
+              <option value="high">High</option>
+              <option value="medium">Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </div>
+          <div class="date-filter">
+            <input type="date" class="date-input" id="startDateFilter">
+            <span>to</span>
+            <input type="date" class="date-input" id="endDateFilter">
+          </div>
+        </div>
+
+        <!-- Task Cards -->
+        <div class="tasks-grid" id="tasksGrid">
+          <!-- Sample Task Cards -->
+          <div class="task-card" data-status="committed" data-priority="medium">
+            <h3 class="task-title">Implement user authentication</h3>
+            <p class="task-description">Add user authentication functionality to the website.</p>
+            <div class="task-dates">
+              <div class="task-date">
+                <span class="task-date-label">Start Date</span>
+                <span class="task-date-value">4/7/2025</span>
+              </div>
+              <div class="task-date">
+                <span class="task-date-label">End Date</span>
+                <span class="task-date-value">4/7/2025</span>
+              </div>
+            </div>
+            <span class="task-status status-committed">COMMITTED</span>
+            <div class="task-actions">
+              <button class="icon-btn material-icons" onclick="editTask(this)">edit</button>
+              <button class="icon-btn material-icons" onclick="deleteTask(this)">delete</button>
+              <button class="icon-btn material-icons">more_vert</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-status="priority" data-priority="high">
+            <h3 class="task-title-1">Update website content</h3>
+            <p class="task-description">Update the About Us page with new team members.</p>
+            <div class="task-dates">
+              <div class="task-date">
+                <span class="task-date-label">Start Date</span>
+                <span class="task-date-value">4/7/2025</span>
+              </div>
+              <div class="task-date">
+                <span class="task-date-label">End Date</span>
+                <span class="task-date-value">4/7/2025</span>
+              </div>
+            </div>
+            <span class="task-status status-priority">PRIORITY</span>
+            <div class="task-actions">
+              <button class="icon-btn material-icons" onclick="editTask(this)">edit</button>
+              <button class="icon-btn material-icons" onclick="deleteTask(this)">delete</button>
+              <button class="icon-btn material-icons">more_vert</button>
+            </div>
+          </div>
+
+          <div class="task-card" data-status="pending" data-priority="medium">
+            <h3 class="task-title-2">Design new logo</h3>
+            <p class="task-description">Create a new logo for the company rebranding.</p>
+            <div class="task-dates">
+              <div class="task-date">
+                <span class="task-date-label">Start Date</span>
+                <span class="task-date-value">4/8/2025</span>
+              </div>
+              <div class="task-date">
+                <span class="task-date-label">End Date</span>
+                <span class="task-date-value">4/10/2025</span>
+              </div>
+            </div>
+            <span class="task-status status-pending">PENDING</span>
+            <div class="task-actions">
+              <button class="icon-btn material-icons" onclick="editTask(this)">edit</button>
+              <button class="icon-btn material-icons" onclick="deleteTask(this)">delete</button>
+              <button class="icon-btn material-icons">more_vert</button>   
+            </div>
+          </div>
+
+          <div class="task-card" data-status="progress" data-priority="high">          
+            <h3 class="task-title-3">Review project timelines</h3>
+            <p class="task-description">Review and adjust project timelines based on new requirements.</p>
+            <div class="task-dates">
+              <div class="task-date">
+                <span class="task-date-label">Start Date</span>
+                <span class="task-date-value">4/9/2025</span>
+              </div>
+              <div class="task-date">
+                <span class="task-date-label">End Date</span>
+                <span class="task-date-value">4/12/2025</span>
+              </div>
+            </div>
+            <span class="task-status status-progress">IN PROGRESS</span>
+            <div class="task-actions">
+              <button class="icon-btn material-icons" onclick="editTask(this)">edit</button>
+              <button class="icon-btn material-icons" onclick="deleteTask(this)">delete</button>
+              <button class="icon-btn material-icons">more_vert</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Task Form -->
+        <div class="add-task-form" id="addTaskForm">
+          <h3 class="form-title">Add New Task</h3>
+          <form id="taskForm">
+            <div class="form-group">
+              <label for="taskTitle">Title</label>
+              <input type="text" id="taskTitle" class="form-control" placeholder="Enter task title" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="taskDescription">Description</label>
+              <textarea id="taskDescription" class="form-control" placeholder="Enter task description" required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="taskStatus">Status</label>
+                <select id="taskStatus" class="form-control">
+                  <option value="pending">Pending</option>
+                  <option value="progress">In Progress</option>
+                  <option value="completed">Completed</option>
+                  <option value="deployed">Deployed</option>
+                  <option value="deferred">Deferred</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="taskPriority">Priority</label>
+                <select id="taskPriority" class="form-control">
+                  <option value="high">High</option>
+                  <option value="medium">Medium</option>
+                  <option value="low">Low</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn btn-outlined" id="cancelBtn">Cancel</button>
+              <button type="submit" class="btn btn-primary">Add Task</button>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="Material Ui.js"></script>
+</body>
+
+</html>
