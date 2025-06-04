@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Mobile View.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Task Board 1 -->
+        <div class="task-board" data-board="1">
+            <div class="board-header">
+                <div class="board-icon">📋</div>
+                <div>
+                    <div class="board-title">Task Board</div>
+                    <div class="board-subtitle">All Task (5)</div>
+                </div>
+            </div>
+            <div class="board-content">
+                <div class="empty-board">
+                    <div class="empty-board-text">No task found.</div>
+                    <a href="#" class="add-task-link" onclick="openModal()">Add a new task</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Board 2 -->
+        <div class="task-board" data-board="2">
+            <div class="board-header">
+                <div class="board-icon">📋</div>
+                <div>
+                    <div class="board-title">Task Board</div>
+                    <div class="board-subtitle">All Task (4)</div>
+                </div>
+            </div>
+            <div class="board-content">
+                <div class="task-filters">
+                    <button class="filter-btn active">All Items</button>
+                    <button class="filter-btn">All Priority</button>
+                </div>
+                
+                <div class="task-card" draggable="true" data-task="1">
+                    <div class="task-title">Implement user authentication</div>
+                    <div class="task-description">Add user authentication functionality to the website</div>
+                    <div class="task-meta">
+                        <div>
+                            <div>Start Date: 4/1/2024</div>
+                            <div>End Date: 4/15/2024</div>
+                        </div>
+                        <div class="task-status">COMPLETE</div>
+                    </div>
+                </div>
+
+                <div class="task-card yellow" draggable="true" data-task="2">
+                    <div class="task-title">Update website content</div>
+                    <div class="task-description">Update the About us page with current information</div>
+                    <div class="task-meta">
+                        <div>
+                            <div>Start Date: 4/1/2024</div>
+                            <div>End Date: 4/15/2024</div>
+                        </div>
+                        <div class="task-status in-progress">IN PROGRESS</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Task Board 3 -->
+        <div class="task-board" data-board="3">
+            <div class="board-header">
+                <div class="board-icon">📋</div>
+                <div>
+                    <div class="board-title">Task Board</div>
+                    <div class="board-subtitle">All Task (1)</div>
+                </div>
+            </div>
+            <div class="board-content">
+                <div class="task-filters">
+                    <button class="filter-btn">Sort</button>
+                    <button class="filter-btn active">All Status</button>
+                    <button class="filter-btn">All Priority</button>
+                </div>
+                
+                <div class="task-filters">
+                    <button class="filter-btn">Filter</button>
+                    <button class="filter-btn">All Items - yyyy</button>
+                    <button class="filter-btn">All Items - yyyy</button>
+                </div>
+
+                <div class="task-card" draggable="true" data-task="3">
+                    <div class="task-title">Implement user authentication</div>
+                    <div class="task-description">Add user authentication functionality to the website</div>
+                    <div class="task-meta">
+                        <div>
+                            <div>Start Date: 4/1/2024</div>
+                            <div>End Date: 4/15/2024</div>
+                        </div>
+                        <div class="task-status">COMPLETE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Task Board -->
+        <div class="add-task-board" onclick="openModal()">
+            <div class="add-task-content">
+                <div class="add-task-icon">+</div>
+                <div class="add-task-text">Add New Task</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for adding new tasks -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Add New Task</h2>
+            </div>
+            
+            <form id="taskForm">
+                <div class="form-group">
+                    <label class="form-label">Title</label>
+                    <input type="text" class="form-input" id="taskTitle" placeholder="Task Title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-input form-textarea" id="taskDescription" placeholder="Task Description"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Start Date</label>
+                    <input type="date" class="form-input" id="startDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">End Date</label>
+                    <input type="date" class="form-input" id="endDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Status</label>
+                    <select class="form-select" id="taskStatus">
+                        <option value="Pending">Pending</option>
+                        <option value="IN PROGRESS">In Progress</option>
+                        <option value="COMPLETE">Complete</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Priority</label>
+                    <select class="form-select" id="taskPriority">
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+            </form>
+            
+            <div class="modal-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="addTask()">Add Task</button>
+            </div>
+        </div>
+    </div>
+    <script src="./Mobile View.js"></script>
+</body>
+</html>
